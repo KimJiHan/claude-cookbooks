@@ -32,6 +32,7 @@ Claude Cookbooks는 개발자 커뮤니티의 기여로 발전합니다. 아이�
 - [분류 (Classification)](https://github.com/anthropics/anthropic-cookbook/tree/main/capabilities/classification): Claude를 사용한 텍스트 및 데이터 분류 기법을 탐색합니다.
   - [한국어 가이드](./capabilities/classification/guide_ko.ipynb): 보험 고객 지원 티켓 분류기 구축 (RAG + Chain-of-Thought)
 - [검색 증강 생성 (RAG)](https://github.com/anthropics/anthropic-cookbook/tree/main/capabilities/retrieval_augmented_generation): 외부 지식으로 Claude의 응답을 향상시키는 방법을 배웁니다.
+  - [한국어 가이드](./capabilities/retrieval_augmented_generation/guide_ko.ipynb): RAG 시스템 구축 및 최적화 (요약 인덱싱 + 재순위화)
 - [요약 (Summarization)](https://github.com/anthropics/anthropic-cookbook/tree/main/capabilities/summarization): Claude를 활용한 효과적인 텍스트 요약 기법을 알아봅니다.
 
 ### 도구 사용 및 통합 (Tool Use)
@@ -77,17 +78,34 @@ Claude Cookbooks는 개발자 커뮤니티의 기여로 발전합니다. 아이�
 | 가이드 | 설명 | 경로 |
 |--------|------|------|
 | 분류 가이드 | 보험 고객 지원 티켓 분류기 (RAG + CoT) | [guide_ko.ipynb](./capabilities/classification/guide_ko.ipynb) |
+| RAG 가이드 | RAG 시스템 구축 및 최적화 | [guide_ko.ipynb](./capabilities/retrieval_augmented_generation/guide_ko.ipynb) |
 
 ### 번역된 가이드에서 다루는 내용
+
+#### 분류 가이드
 - **프롬프트 엔지니어링**: XML 형식, 프리필링, temperature 설정
 - **검색 증강 생성 (RAG)**: 유사한 예시를 검색하여 few-shot 학습 구현
 - **Chain-of-Thought**: 명시적 추론으로 분류 정확도 향상 (~97%)
 
+#### RAG 가이드
+- **벡터 데이터베이스**: Voyage AI 임베딩을 사용한 인메모리 벡터 DB 구현
+- **요약 인덱싱**: 문서 요약을 임베딩에 포함하여 검색 품질 향상
+- **재순위화**: Claude를 사용하여 검색 결과 재정렬
+- **평가 시스템**: Precision, Recall, F1, MRR 메트릭을 통한 체계적 평가
+
 ### 정확도 개선 결과
 
+#### 분류 가이드
 | 접근 방식 | 정확도 |
 |----------|--------|
 | 랜덤 기준선 | ~10% |
 | 간단한 분류기 | ~70% |
 | RAG 분류기 | ~94% |
 | RAG + Chain-of-Thought | **~97%** |
+
+#### RAG 가이드
+| 접근 방식 | 엔드 투 엔드 정확도 | MRR |
+|----------|-------------------|-----|
+| 기본 RAG | ~71% | 0.74 |
+| 요약 인덱싱 | ~78% | 0.80 |
+| 요약 인덱싱 + 재순위화 | **~81%** | **0.87** |
